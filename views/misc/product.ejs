@@ -1,0 +1,278 @@
+<%- include('../partials/loading.ejs') %>
+  <%- include('../partials/header-static.ejs') %>
+    <main class="main">
+      <section class="mt-50 mb-50">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="product-detail accordion-detail">
+                <div class="row mb-50">
+                  <div class="col-md-6 col-sm-12 col-xs-12">
+                    <div class="detail-gallery">
+                      <span class="zoom-icon"><i class="fi-rs-search"></i></span>
+                      <!-- MAIN SLIDES -->
+                      <div class="product-image-slider">
+                        <% product?.productImages.forEach(productImage=> { %>
+                          <figure class="border-radius-10">
+                            <img src="<%= productImage.imagePath %>" alt="product image" />
+                          </figure>
+                          <% }) %>
+                      </div>
+                      <!-- THUMBNAILS -->
+                      <div class="slider-nav-thumbnails pl-15 pr-15">
+                        <% product?.productImages.forEach(productImage=> { %>
+                          <div>
+                            <img src="<%= productImage.imagePath %>" alt="product image" />
+                          </div>
+
+                          <% }) %>
+                      </div>
+                    </div>
+                    <!-- End Gallery -->
+                  </div>
+                  <div class="col-md-6 col-sm-12 col-xs-12">
+                    <div class="detail-info">
+                      <h2 class="title-detail">
+                        <%= product.productName %>
+                      </h2>
+                      <div class="product-detail-rating">
+                        <div class="pro-details-brand">
+                          <span>
+                            Brand:
+                            <a href="shop-grid-right.html">
+                              <%= product.brand %>
+                            </a></span>
+                        </div>
+                        <div class="pro-details-brand">
+                          <span>
+                            Category:
+                            <a href="shop-grid-right.html">
+                              <%= product.category[0].toUpperCase() + product.category.slice(1) %>
+                            </a></span>
+                        </div>
+                        <!-- <div class="product-rate-cover text-end">
+                          <div class="product-rate d-inline-block">
+                            <div
+                              class="product-rating"
+                              style="width: 90%"
+                            ></div>
+                          </div>
+                          <span class="font-small ml-5 text-muted">
+                            (25 reviews)</span
+                          >
+                        </div> -->
+                      </div>
+                      <div class="clearfix product-price-cover">
+                        <div class="product-price primary-color float-left">
+                          <ins><span class="text-brand">
+                            ₹<%= product.salePrice %>
+                            </span></ins>
+                          <ins><span class="old-price font-md ml-15">
+                              <%= product.regularPrice %>
+                            </span></ins>
+                          <span class="save-price font-md color3 ml-15">
+                            <%= Math.floor((product.regularPrice - product.salePrice) / product.regularPrice * 100) %>%
+                              Off
+                          </span>
+                        </div>
+                      </div>
+                      <div class="bt-1 border-color-1 mt-15 mb-15"></div>
+                      <div class="short-desc mb-30">
+                        <p>
+                          <%= product.description %>
+                        </p>
+                      </div>
+                      <div class="product_sort_info font-xs mb-30">
+                        <ul>
+                          <li class="mb-10">
+                            <i class="fi-rs-refresh mr-5"></i> 30 Day Return
+                            Policy
+                          </li>
+                          <li>
+                            <i class="fi-rs-credit-card mr-5"></i> Cash on
+                            Delivery available
+                          </li>
+                        </ul>
+                      </div>
+                      <div class="attr-detail attr-color mb-15">
+                        <strong class="mr-10">Color:</strong>
+                        <p>
+                          <%= product.color %>
+                        </p>
+                      </div>
+                      <div class="attr-detail attr-size">
+                        <strong class="mr-10">Size:</strong>
+                        <ul class="list-filter size-filter font-small">
+                          <% sizes.forEach(size=> { %>
+                            <li class="<%= product.sizes.includes(size) ? " active" : '' %>"><a href="#">
+                                <%= size %>
+                              </a></li>
+                            <% }) %>
+                        </ul>
+                      </div>
+                      <div class="bt-1 border-color-1 mt-30 mb-30"></div>
+                      <div class="detail-extralink">
+                        <div class="detail-qty border radius">
+                          <a href="#" class="qty-down"><i class="fi-rs-angle-small-down"></i></a>
+                          <span class="qty-val">1</span>
+                          <a href="#" class="qty-up"><i class="fi-rs-angle-small-up"></i></a>
+                        </div>
+                        <div class="product-extra-link2">
+                          <button type="button" class="button button-add-to-cart" data-bs-toggle="modal"
+                            data-bs-target="#exampleModal">
+                            Add to cart
+                          </button>
+                        </div>
+                      </div>
+                      <ul class="product-meta font-xs color-grey mt-50">
+                        <li>
+                          Availability:<span class="in-stock text-success ml-5">
+                            <%= product.stock %> Items In Stock
+                          </span>
+                        </li>
+                      </ul>
+                    </div>
+                    <!-- Detail Info -->
+                  </div>
+                  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog  modal-dialog-centered">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h1 class="modal-title fs-5" id="exampleModalLabel">Please Login</h1>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                          Please login to add this item to cart.
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                          <a class="btn btn-primary" href="/login">Login</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-10 m-auto entry-main-content">
+                    <h3 class="section-title style-1 mb-30">Product details</h3>
+                    <table class="font-md mb-30">
+                      <tbody>
+                        <tr class="stand-up">
+                          <th>Name:</th>
+                          <td>
+                            <p>
+                              <%= product.productName %>
+                            </p>
+                          </td>
+                        </tr>
+                        <tr class="folded-wo-wheels">
+                          <th>Description:</th>
+                          <td>
+                            <p>
+                              <%= product.description %>
+                            </p>
+                          </td>
+                        </tr>
+                        <tr class="folded-w-wheels">
+                          <th>Brand:</th>
+                          <td>
+                            <p>
+                              <%= product.brand %>
+                            </p>
+                          </td>
+                        </tr>
+                        <tr>
+                          <th>Material:</th>
+                          <td>
+                            <p>
+                              <%= product.material %>
+                            </p>
+                          </td>
+                        </tr>
+                        <tr class="pa_color">
+                          <th>Color:</th>
+                          <td>
+                            <p>
+                              <%= product.color %>
+                            </p>
+                          </td>
+                        </tr>
+                        <tr class="pa_size">
+                          <th>Size:</th>
+                          <td>
+                            <% for( let i=0; i < product.sizes.length; i++ ) { %>
+                              <% if ( i==product.sizes.length-1 ) { %>
+                                <span>
+                                  <%= product.sizes[i].toUpperCase() %>
+                                </span>
+                                <% } else { %>
+                                  <span>
+                                    <%= product.sizes[i].toUpperCase() %>,
+                                  </span>
+                                  <% } %>
+                                    <% } %>
+                          </td>
+                        </tr>
+                        <tr>
+                          <th>No. of stock:</th>
+                          <td>
+                            <p>
+                              <%= product.stock %>
+                            </p>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+                <div class="row mt-60">
+                  <div class="col-12">
+                    <h3 class="section-title style-1 mb-30">
+                      Related products
+                    </h3>
+                  </div>
+                  <div class="col-12">
+                    <div class="row related-products">
+                      <% relatedProducts.forEach(relatedProduct=> { %>
+                        <div class="col-lg-3 col-md-4 col-12 col-sm-6">
+                          <div class="product-cart-wrap small hover-up">
+                            <div class="product-img-action-wrap">
+                              <div class="product-img product-img-zoom">
+                                <a href="<%= relatedProduct._id %>" tabindex="0">
+                                  <img class="default-img" src="<%= relatedProduct.productImages[0].imagePath %>"
+                                    alt="" />
+                                  <img class="hover-img" src="<%= relatedProduct.productImages[1].imagePath %>"
+                                    alt="" />
+                                </a>
+                              </div>
+
+                            </div>
+                            <div class="product-content-wrap">
+                              <h2>
+                                <a href="<%= relatedProduct._id %>" tabindex="0">
+                                  <%= relatedProduct.productName %>
+                                </a>
+                              </h2>
+                              <p>
+                                <%= relatedProduct.productName %>
+                              </p>
+                              <div class="product-price">
+                                <span>₹<%= relatedProduct.salePrice %></span>
+                                <span class="old-price">₹<%= relatedProduct.regularPrice %></span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <% }) %>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <hr />
+        </div>
+      </section>
+    </main>
+    <%- include('../partials/footer-static.ejs') %>

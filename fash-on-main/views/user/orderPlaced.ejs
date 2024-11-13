@@ -1,0 +1,59 @@
+<section class="mt-50 mb-50">
+  <% if (locals?.failed !=1) { %>
+    <div class="container">
+      <div class="row w-50 p-sm-5 p-lg-65 mt-50 m-auto rounded-2 text-center" style="background-color: #b2d8d8">
+        <h3 class="mb-10">Order Placed Successfully</h3>
+        <p>
+          Your have placed your order successfully. Check your
+          <a href="/user/profile?tab=orders">profile </a> to see the order status
+        </p>
+      </div>
+      <div class="row w-50 p-sm-5 p-lg-65 mt-50 mb-50 mb m-auto rounded-2">
+        <h5 class="mb-10">Delivering to</h5>
+        <table class="table mb-20 text-start ">
+          <tbody>
+            <tr>
+              <th>Street</th>
+              <td>
+                <%= address.street %>
+              </td>
+            </tr>
+            <tr>
+              <th>City</th>
+              <td>
+                <%= address.city %>
+              </td>
+            </tr>
+            <tr>
+              <th>State</th>
+              <td>
+                <%= address.state %>
+              </td>
+            </tr>
+            <tr>
+              <th>Pincode</th>
+              <td>
+                <%= address.pincode %>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="row">
+          <div class="col text-center"><a class="btn" href="/user/profile?tab=orders">Order Details</a></div>
+          <div class="col text-center"><a class="btn" href="/user/">Continue Shopping</a></div>
+        </div>
+      </div>
+    </div>
+    <% } else { %>
+      <div class="container">
+        <div class="row w-50 p-sm-5 p-lg-65 mt-50 m-auto rounded-2 text-center" style="background-color: #d92e2e;">
+          <h3 class="mb-10" style="color: #fff;">Order Failed</h3>
+          <p style="color: #fff;">
+            Your order has been failed. Check your
+            <a class="text-decoration-underline text-white" href="/user/profile?tab=orders">profile </a> to see
+            the order status
+          </p>
+        </div>
+      </div>
+      <% } %>
+</section>
